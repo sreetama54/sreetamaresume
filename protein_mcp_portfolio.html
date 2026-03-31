@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,400;0,600;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-50: #EAF3DE; --green-200: #97C459; --green-600: #3B6D11; --green-800: #27500A;
+    --teal-50: #E1F5EE; --teal-200: #5DCAA5; --teal-600: #0F6E56; --teal-800: #085041;
+    --amber-50: #FAEEDA; --amber-200: #EF9F27; --amber-600: #854F0B; --amber-800: #633806;
+    --purple-50: #EEEDFE; --purple-200: #AFA9EC; --purple-600: #534AB7; --purple-800: #3C3489;
+    --gray-50: #F1EFE8; --gray-100: #D3D1C7; --gray-200: #B4B2A9; --gray-600: #5F5E5A; --gray-800: #444441;
+  }
+
+  body { font-family: var(--font-sans, system-ui, sans-serif); background: transparent; color: var(--color-text-primary); }
+
+  .shell {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+  }
+
+  .header {
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .project-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px; font-weight: 600; letter-spacing: -0.5px;
+    color: var(--color-text-primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.04em;
+    padding: 3px 8px; border-radius: 20px;
+    background: var(--green-50); color: var(--green-800);
+    border: 0.5px solid var(--green-200);
+    vertical-align: middle;
+  }
+
+  .tagline { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; max-width: 380px; }
+
+  .pill-row { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    border: 0.5px solid var(--color-border-tertiary);
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+  }
+
+  .tabs {
+    display: flex; border-bottom: 0.5px solid var(--color-border-tertiary);
+    background: var(--color-background-secondary);
+    padding: 0 1rem;
+  }
+
+  .tab {
+    font-size: 13px; padding: 10px 14px; cursor: pointer; border: none; background: none;
+    color: var(--color-text-secondary); border-bottom: 2px solid transparent;
+    transition: all 0.15s; font-family: inherit;
+  }
+  .tab.active { color: var(--color-text-primary); border-bottom-color: var(--green-600); font-weight: 500; }
+  .tab:hover:not(.active) { color: var(--color-text-primary); }
+
+  .content { padding: 1.25rem 1.5rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--color-text-tertiary); margin-bottom: 0.75rem;
+  }
+
+  /* TOOLS TAB */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+
+  .tool-card {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 12px; padding: 1rem;
+    background: var(--color-background-primary);
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .tool-card:hover { border-color: var(--color-border-secondary); background: var(--color-background-secondary); }
+  .tool-card.selected { border-color: var(--green-600); }
+
+  .tool-stripe {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .stripe-green { background: var(--green-200); }
+  .stripe-teal  { background: var(--teal-200); }
+  .stripe-amber { background: var(--amber-200); }
+  .stripe-purple{ background: var(--purple-200); }
+
+  .tool-icon { font-size: 20px; margin-bottom: 6px; line-height: 1; }
+  .tool-name { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .tool-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+  /* DEMO TAB */
+  .demo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 560px) { .demo-row { grid-template-columns: 1fr; } }
+
+  .demo-panel {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 12px; overflow: hidden;
+  }
+
+  .panel-header {
+    padding: 8px 12px;
+    background: var(--color-background-secondary);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--color-text-secondary);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .dot-green { background: var(--green-200); }
+  .dot-amber { background: var(--amber-200); }
+
+  .panel-body { padding: 12px; }
+
+  .tool-call {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 8px; padding: 10px 12px;
+    color: var(--color-text-secondary); line-height: 1.7;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+  }
+
+  .tool-key { color: var(--green-600); }
+  .tool-val { color: var(--amber-600); }
+  .tool-str { color: var(--purple-600); }
+  .tool-comment { color: var(--color-text-tertiary); }
+
+  .response-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    font-size: 13px;
+  }
+  .response-item:last-child { border-bottom: none; }
+
+  .aa-name { color: var(--color-text-secondary); font-size: 12px; }
+  .aa-bar-wrap { flex: 1; margin: 0 10px; height: 4px; background: var(--gray-100); border-radius: 2px; }
+  .aa-bar { height: 100%; border-radius: 2px; background: var(--green-200); transition: width 0.4s; }
+  .aa-val { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--color-text-tertiary); min-width: 36px; text-align: right; }
+
+  /* ARCHITECTURE TAB */
+  .arch-flow { display: flex; flex-direction: column; gap: 6px; }
+
+  .arch-node {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 10px; padding: 10px 14px;
+    display: flex; align-items: center; gap: 12px;
+    background: var(--color-background-primary);
+  }
+
+  .arch-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .icon-green  { background: var(--green-50);  }
+  .icon-teal   { background: var(--teal-50);   }
+  .icon-amber  { background: var(--amber-50);  }
+  .icon-purple { background: var(--purple-50); }
+  .icon-gray   { background: var(--gray-50);   }
+
+  .arch-text { flex: 1; }
+  .arch-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .arch-sub   { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+  .arch-connector {
+    display: flex; align-items: center; gap: 6px; padding: 0 14px;
+    font-family: 'DM Mono', monospace; font-size: 10px; color: var(--color-text-tertiary);
+  }
+  .connector-line { flex: 1; height: 0.5px; background: var(--color-border-tertiary); }
+  .connector-arrow { font-size: 12px; }
+
+  /* STORY TAB */
+  .story-block {
+    border-left: 2px solid var(--green-200);
+    padding: 10px 0 10px 16px;
+    margin-bottom: 14px;
+  }
+  .story-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--green-600); text-transform: uppercase; margin-bottom: 4px; }
+  .story-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.65; }
+
+  .next-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-family: inherit; cursor: pointer;
+    padding: 6px 14px; border-radius: 20px;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    margin-top: 1rem; transition: background 0.15s;
+  }
+  .next-btn:hover { background: var(--color-background-primary); border-color: var(--color-border-primary); }
+
+  .hidden { display: none; }
+</style>
+
+<div class="shell">
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="project-name">
+        protein-mcp
+        <span class="badge">WIP</span>
+      </div>
+      <div class="tagline">An MCP server exposing a nutritional amino acid database as AI-native tools — built for agents, LLMs, and composable nutrition intelligence.</div>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom:6px">Stack</div>
+      <div class="pill-row">
+        <span class="pill">TypeScript</span>
+        <span class="pill">MCP SDK</span>
+        <span class="pill">Node.js</span>
+        <span class="pill">REST-ready</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('tools',this)">Tools surface</button>
+    <button class="tab" onclick="switchTab('demo',this)">Live demo</button>
+    <button class="tab" onclick="switchTab('arch',this)">Architecture</button>
+    <button class="tab" onclick="switchTab('story',this)">My story</button>
+  </div>
+
+  <!-- TOOLS TAB -->
+  <div id="tab-tools" class="content">
+    <div class="section-label">4 MCP tools registered</div>
+    <div class="tools-grid">
+      <div class="tool-card" onclick="selectTool(this,'demo')">
+        <div class="tool-stripe stripe-green"></div>
+        <div class="tool-icon">🔍</div>
+        <div class="tool-name">list_ingredients</div>
+        <div class="tool-desc">Returns all 135+ available ingredients. Entry point for discovery — agents call this first.</div>
+      </div>
+      <div class="tool-card" onclick="selectTool(this,'demo')">
+        <div class="tool-stripe stripe-teal"></div>
+        <div class="tool-icon">🧬</div>
+        <div class="tool-name">get_amino_profile</div>
+        <div class="tool-desc">Full 21-field amino acid breakdown for any ingredient, in g/100g protein.</div>
+      </div>
+      <div class="tool-card" onclick="selectTool(this,'demo')">
+        <div class="tool-stripe stripe-amber"></div>
+        <div class="tool-icon">⚡</div>
+        <div class="tool-name">get_essential_amino_acids</div>
+        <div class="tool-desc">Quick-access view: just the 9 essential AAs. Optimised for dietary planning agents.</div>
+      </div>
+      <div class="tool-card" onclick="selectTool(this,'demo')">
+        <div class="tool-stripe stripe-purple"></div>
+        <div class="tool-icon">⚖️</div>
+        <div class="tool-name">compare_amino_profiles</div>
+        <div class="tool-desc">Side-by-side diff across 2+ ingredients. Enables "which protein source is better" reasoning.</div>
+      </div>
+    </div>
+    <div style="margin-top:1rem; padding:10px 12px; border-radius:10px; background:var(--color-background-secondary); border:0.5px solid var(--color-border-tertiary); font-size:12px; color:var(--color-text-secondary); line-height:1.6">
+      <span style="font-weight:500; color:var(--color-text-primary)">Note on WIP status:</span> Tool schemas and routing are complete. Data hydration returns nulls for most fields — the dataset parsing layer is the active workstream. Architecture is solid and extensible.
+    </div>
+  </div>
+
+  <!-- DEMO TAB -->
+  <div id="tab-demo" class="content hidden">
+    <div class="section-label">Simulated tool call — compare quinoa vs oats (essential AAs)</div>
+    <div class="demo-row">
+      <div class="demo-panel">
+        <div class="panel-header">
+          <span class="dot dot-amber"></span>
+          Tool invocation
+        </div>
+        <div class="panel-body">
+          <div class="tool-call"><span class="tool-key">tool</span>: <span class="tool-str">"compare_amino_profiles"</span>
+<span class="tool-key">params</span>: {
+  <span class="tool-key">ingredients</span>: [
+    <span class="tool-str">"quinoa"</span>,
+    <span class="tool-str">"oats"</span>
+  ]
+}</div>
+          <div class="tool-call"><span class="tool-comment">// Registered schema (excerpt)</span>
+{
+  <span class="tool-key">name</span>: <span class="tool-str">"compare_amino_profiles"</span>,
+  <span class="tool-key">description</span>: <span class="tool-str">"Compare amino acid
+profiles across 2+ ingredients"</span>,
+  <span class="tool-key">inputSchema</span>: {
+    <span class="tool-key">ingredients</span>: {
+      <span class="tool-key">type</span>: <span class="tool-val">array</span>,
+      <span class="tool-key">minItems</span>: <span class="tool-val">2</span>
+    }
+  }
+}</div>
+        </div>
+      </div>
+
+      <div class="demo-panel">
+        <div class="panel-header">
+          <span class="dot dot-green"></span>
+          Projected response (post-data layer)
+        </div>
+        <div class="panel-body">
+          <div style="font-size:11px;color:var(--color-text-tertiary);margin-bottom:10px;font-family:'DM Mono',monospace">quinoa vs oats — essential AAs (g/100g protein)</div>
+
+          <div id="aa-list">
+            <div class="response-item">
+              <span class="aa-name" style="min-width:90px">lysine</span>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:75%;background:var(--teal-200)"></div></div>
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:44%;background:var(--amber-200)"></div></div>
+              </div>
+              <span class="aa-val">6.1 / 3.6</span>
+            </div>
+            <div class="response-item">
+              <span class="aa-name" style="min-width:90px">leucine</span>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:68%;background:var(--teal-200)"></div></div>
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:72%;background:var(--amber-200)"></div></div>
+              </div>
+              <span class="aa-val">5.5 / 5.8</span>
+            </div>
+            <div class="response-item">
+              <span class="aa-name" style="min-width:90px">isoleucine</span>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:52%;background:var(--teal-200)"></div></div>
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:48%;background:var(--amber-200)"></div></div>
+              </div>
+              <span class="aa-val">4.2 / 3.9</span>
+            </div>
+            <div class="response-item">
+              <span class="aa-name" style="min-width:90px">threonine</span>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:40%;background:var(--teal-200)"></div></div>
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:38%;background:var(--amber-200)"></div></div>
+              </div>
+              <span class="aa-val">3.3 / 3.1</span>
+            </div>
+            <div class="response-item">
+              <span class="aa-name" style="min-width:90px">valine</span>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:58%;background:var(--teal-200)"></div></div>
+                <div class="aa-bar-wrap"><div class="aa-bar" style="width:61%;background:var(--amber-200)"></div></div>
+              </div>
+              <span class="aa-val">4.7 / 5.0</span>
+            </div>
+          </div>
+          <div style="margin-top:8px;display:flex;gap:12px;font-size:11px;color:var(--color-text-tertiary)">
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--teal-200);margin-right:4px;vertical-align:middle"></span>quinoa</span>
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--amber-200);margin-right:4px;vertical-align:middle"></span>oats</span>
+            <span style="margin-left:auto;font-style:italic">data layer WIP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE TAB -->
+  <div id="tab-arch" class="content hidden">
+    <div class="section-label">System design</div>
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="arch-icon icon-purple">🤖</div>
+        <div class="arch-text">
+          <div class="arch-title">AI agent / LLM host</div>
+          <div class="arch-sub">Claude, GPT-4, any MCP-compatible client</div>
+        </div>
+        <span class="pill">consumer</span>
+      </div>
+      <div class="arch-connector"><div class="connector-line"></div><span class="connector-arrow">↓</span><div class="connector-line"></div><span style="font-size:10px">MCP protocol (JSON-RPC)</span></div>
+      <div class="arch-node">
+        <div class="arch-icon icon-green">🛠</div>
+        <div class="arch-text">
+          <div class="arch-title">protein-mcp server</div>
+          <div class="arch-sub">Tool registry · Schema validation · Request routing</div>
+        </div>
+        <span class="pill" style="background:var(--green-50);border-color:var(--green-200);color:var(--green-800)">this project</span>
+      </div>
+      <div class="arch-connector"><div class="connector-line"></div><span class="connector-arrow">↓</span><div class="connector-line"></div><span style="font-size:10px">function dispatch</span></div>
+      <div class="arch-node">
+        <div class="arch-icon icon-teal">🗃</div>
+        <div class="arch-text">
+          <div class="arch-title">Data resolver (WIP)</div>
+          <div class="arch-sub">FAO dataset parser · Normalisation · Typed response builder</div>
+        </div>
+        <span class="pill" style="background:var(--amber-50);border-color:var(--amber-200);color:var(--amber-800)">active workstream</span>
+      </div>
+      <div class="arch-connector"><div class="connector-line"></div><span class="connector-arrow">↓</span><div class="connector-line"></div><span style="font-size:10px">structured response</span></div>
+      <div class="arch-node">
+        <div class="arch-icon icon-gray">📤</div>
+        <div class="arch-text">
+          <div class="arch-title">Tool result → agent context</div>
+          <div class="arch-sub">Structured JSON injected into model context for reasoning</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+      <div style="padding:10px;border-radius:10px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary)">
+        <div style="font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px">Completed</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">Tool schema design, MCP registration, routing layer, TypeScript types</div>
+      </div>
+      <div style="padding:10px;border-radius:10px;background:var(--amber-50);border:0.5px solid var(--amber-200)">
+        <div style="font-size:11px;font-weight:500;color:var(--amber-800);margin-bottom:3px">In progress</div>
+        <div style="font-size:12px;color:var(--amber-600)">FAO dataset parsing, null hydration, response caching</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY TAB -->
+  <div id="tab-story" class="content hidden">
+    <div class="section-label">How this project maps to the role</div>
+
+    <div class="story-block">
+      <div class="story-label">AI curiosity</div>
+      <div class="story-text">I built this because I wanted to understand the Model Context Protocol at a deeper level — not just consume it but <em>expose</em> it. protein-mcp is a real MCP server: tools are registered with proper schemas, the routing layer dispatches to the right handler, and the response format is designed for agent consumption. I stay close to what's happening in the AI tooling ecosystem.</div>
+    </div>
+
+    <div class="story-block">
+      <div class="story-label">Engineering craft</div>
+      <div class="story-text">The project is TypeScript throughout. Tool schemas are strictly typed; the data layer is deliberately separated from the routing layer so it can be swapped out (e.g. swap FAO CSV parsing for a database query). I started with the interface before the implementation — a habit from TDD thinking.</div>
+    </div>
+
+    <div class="story-block">
+      <div class="story-label">Product thinking</div>
+      <div class="story-text">The four tools aren't arbitrary — they map to real agent workflows: discover → inspect → narrow → compare. That's a deliberate UX for machines. At Zoopla, I'd bring the same thinking to how frontend products feel for users: flows that reduce friction and surface the right data at the right moment.</div>
+    </div>
+
+    <div class="story-block">
+      <div class="story-label">Honest about WIP</div>
+      <div class="story-text">The data hydration layer isn't complete — the FAO dataset has messy structure and I'm mid-parse. I'm sharing it anyway because the architecture decisions are the interesting part, and I believe in showing work in progress. Shipping iteratively and being transparent about state is how good teams build fast.</div>
+    </div>
+
+    <button class="next-btn" onclick="sendPrompt('Help me write a cover letter pitch for the Zoopla role using my protein-mcp project as the hook ↗')">
+      Draft my cover letter pitch ↗
+    </button>
+  </div>
+</div>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    ['tools','demo','arch','story'].forEach(t => {
+      document.getElementById('tab-'+t).classList.toggle('hidden', t !== id);
+    });
+  }
+
+  function selectTool(card, tabName) {
+    document.querySelectorAll('.tool-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const tabBtn = document.querySelector('.tab:nth-child(2)');
+    switchTab('demo', tabBtn);
+  }
+</script>
