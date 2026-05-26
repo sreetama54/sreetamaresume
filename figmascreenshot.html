@@ -58,84 +58,37 @@
           <h2 class="text-2xl font-bold tracking-tight text-brandCharcoal">UI/UX Flow: From Strategy to Structural Layout</h2>
           <p class="text-sm text-gray-500 mt-1">Demonstrating low-friction user onboarding using file-based path state compilation.</p>
         </div>
-        <a 
-          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-xs font-semibold text-brandTerracotta hover:underline self-start sm:self-center"
-        >
-          View Source Design System &rarr;
-        </a>
+        <span class="text-xs font-semibold text-gray-400 select-none cursor-not-allowed self-start sm:self-center bg-gray-100 px-3 py-1 rounded-md border border-gray-200">
+          Design System Workflow
+        </span>
       </div>
       
-      <div class="mt-8 bg-gray-100 rounded-2xl p-8 border border-gray-200/60 flex flex-col items-center justify-center relative group">
-        <a 
-          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-full flex flex-col items-center"
-        >
-          <img 
-            src="workflow-1" 
-            alt="Essential Protein Onboarding Wireframes" 
-            class="rounded-xl shadow-lg border border-gray-200 max-w-full h-auto object-cover transition duration-300 group-hover:scale-[1.005] group-hover:shadow-xl"
-          />
-          <div class="absolute inset-0 bg-brandCharcoal/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
-            <span class="bg-white text-brandCharcoal text-xs font-bold px-4 py-2 rounded-lg shadow-md pointer-events-none">Open Interactive Figma File</span>
+      <div class="mt-8 relative max-w-full overflow-hidden bg-gray-100 rounded-2xl p-4 sm:p-8 border border-gray-200/60">
+        
+        <div class="relative w-full overflow-hidden rounded-xl bg-white shadow-lg border border-gray-200">
+          
+          <div id="carouselWrapper" class="flex transition-transform duration-500 ease-in-out" style="transform: translateX(0%);">
+            
+            <div class="w-full shrink-0 flex flex-col items-center p-4">
+              <img 
+                src="Screenshot 2026-05-26 at 09.10.20.png" 
+                alt="Essential Protein Onboarding Wireframes - Full Sequence" 
+                class="max-h-[500px] w-auto object-contain rounded"
+              />
+              <p class="text-xs text-gray-500 mt-4 font-medium bg-gray-50 px-3 py-1 rounded-full">Slide 1: Complete Onboarding Sequence State Transitions</p>
+            </div>
+
+            <div class="w-full shrink-0 flex flex-col items-center p-4 bg-gray-50/50">
+              <img 
+                src="Screenshot 2026-05-26 at 09.10.20.png" 
+                alt="Essential Protein Onboarding Detail View" 
+                class="max-h-[500px] w-auto object-contain rounded filter hue-rotate-15"
+              />
+              <p class="text-xs text-gray-500 mt-4 font-medium bg-gray-50 px-3 py-1 rounded-full">Slide 2: Contextual UI Component Focus</p>
+            </div>
+
           </div>
-        </a>
-        <span class="text-xs text-gray-400 mt-4 italic">Figure 1.0: Multi-step pagination flow state transitions (Splash Screen through Stage Steps).</span>
-      </div>
-    </section>
 
-    <hr class="border-gray-200 my-12" />
-
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-        <div class="h-8 w-8 bg-brandSage/10 text-brandSage flex items-center justify-center rounded-lg font-bold mb-4">01</div>
-        <h3 class="text-lg font-bold text-brandCharcoal">Figma to Code Pipeline</h3>
-        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Translated specific spatial layout design keys natively into functional parameters. Layout components enforce strict spatial design constants ($4\text{px}$ multipliers) mapping consistently to underlying style utility configurations.
-        </p>
-      </div>
-
-      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-        <div class="h-8 w-8 bg-brandTerracotta/10 text-brandTerracotta flex items-center justify-center rounded-lg font-bold mb-4">02</div>
-        <h3 class="text-lg font-bold text-brandCharcoal">Dynamic Navigation</h3>
-        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Engineered utilizing <strong>Expo Router</strong> routing file compilation. Step sequences compile view structures dynamically from arrays instead of managing separate structural component trees, lowering overall bundle overhead.
-        </p>
-      </div>
-
-      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-        <div class="h-8 w-8 bg-brandCharcoal/10 text-brandCharcoal flex items-center justify-center rounded-lg font-bold mb-4">03</div>
-        <h3 class="text-lg font-bold text-brandCharcoal">Model Context Protocol</h3>
-        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Interfaces directly with custom multi-tool server wrappers (`protein-mcp`). Exposes nutritional amino data arrays to client AI interfaces via typed parameter validation layers securely connected via Firestore.
-        </p>
-      </div>
-
-    </section>
-
-  </main>
-
-  <footer class="bg-brandCharcoal text-white/90 mt-16 py-8 px-6 text-center text-xs tracking-wider">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p>&copy; 2026 Team Mars + Sree &bull; Case Study Asset</p>
-      <div class="flex gap-6">
-        <a href="#" class="hover:text-brandSage transition-colors">GitHub Repository</a>
-        <a 
-          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="hover:text-brandSage transition-colors font-semibold"
-        >
-          Live Figma Project File
-        </a>
-      </div>
-    </div>
-  </footer>
-
-</body>
-</html>
+          <button 
+            onclick="moveCarousel(-1)" 
+            class="absolute left-4 top-1/2 -translate-y-1/2 bg-brandCharcoal/80 text-white rounded-full p
