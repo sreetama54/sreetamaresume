@@ -91,4 +91,111 @@
 
           <button 
             onclick="moveCarousel(-1)" 
-            class="absolute left-4 top-1/2 -translate-y-1/2 bg-brandCharcoal/80 text-white rounded-full p
+            class="absolute left-4 top-1/2 -translate-y-1/2 bg-brandCharcoal/80 text-white rounded-full p-3 shadow-md hover:bg-brandCharcoal focus:outline-none transition-colors"
+            aria-label="Previous Slide"
+          >
+            &#10094;
+          </button>
+          <button 
+            onclick="moveCarousel(1)" 
+            class="absolute right-4 top-1/2 -translate-y-1/2 bg-brandCharcoal/80 text-white rounded-full p-3 shadow-md hover:bg-brandCharcoal focus:outline-none transition-colors"
+            aria-label="Next Slide"
+          >
+            &#10095;
+          </button>
+
+        </div>
+
+        <div class="flex justify-center gap-2 mt-4">
+          <button onclick="jumpToSlide(0)" class="carousel-dot h-2 w-6 bg-brandTerracotta rounded-full transition-all duration-300" aria-label="Slide 1 Navigation"></button>
+          <button onclick="jumpToSlide(1)" class="carousel-dot h-2 w-2 bg-brandTerracotta/40 rounded-full transition-all duration-300" aria-label="Slide 2 Navigation"></button>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="border-gray-200 my-12" />
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div class="h-8 w-8 bg-brandSage/10 text-brandSage flex items-center justify-center rounded-lg font-bold mb-4">01</div>
+        <h3 class="text-lg font-bold text-brandCharcoal">Figma to Code Pipeline</h3>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Translated specific spatial layout design keys natively into functional parameters. Layout components enforce strict spatial design constants ($4\text{px}$ multipliers) mapping consistently to underlying style utility configurations.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div class="h-8 w-8 bg-brandTerracotta/10 text-brandTerracotta flex items-center justify-center rounded-lg font-bold mb-4">02</div>
+        <h3 class="text-lg font-bold text-brandCharcoal">Dynamic Navigation</h3>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Engineered utilizing <strong>Expo Router</strong> routing file compilation. Step sequences compile view structures dynamically from arrays instead of managing separate structural component trees, lowering overall bundle overhead.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div class="h-8 w-8 bg-brandCharcoal/10 text-brandCharcoal flex items-center justify-center rounded-lg font-bold mb-4">03</div>
+        <h3 class="text-lg font-bold text-brandCharcoal">Model Context Protocol</h3>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Interfaces directly with custom multi-tool server wrappers (`protein-mcp`). Exposes nutritional amino data arrays to client AI interfaces via typed parameter validation layers securely connected via Firestore.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-brandCharcoal text-white/90 mt-16 py-8 px-6 text-center text-xs tracking-wider">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 Team Mars + Sree &bull; Case Study Asset</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-brandSage transition-colors">GitHub Repository</a>
+        <a 
+          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="hover:text-brandSage transition-colors font-semibold"
+        >
+          Live Figma Project File
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlideIndex = 0;
+    const totalSlides = 2; // Expand this number if you append more image source containers
+
+    function updateCarouselLayout() {
+      const wrapper = document.getElementById('carouselWrapper');
+      wrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+      
+      // Update interactive navigation indicator tracking dot styling states
+      const dots = document.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlideIndex) {
+          dot.classList.remove('w-2', 'bg-brandTerracotta/40');
+          dot.classList.add('w-6', 'bg-brandTerracotta');
+        } else {
+          dot.classList.remove('w-6', 'bg-brandTerracotta');
+          dot.classList.add('w-2', 'bg-brandTerracotta/40');
+        }
+      });
+    }
+
+    function moveCarousel(direction) {
+      currentSlideIndex += direction;
+      if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+      if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+      updateCarouselLayout();
+    }
+
+    function jumpToSlide(slideIndex) {
+      currentSlideIndex = slideIndex;
+      updateCarouselLayout();
+    }
+  </script>
+
+</body>
+</html>
