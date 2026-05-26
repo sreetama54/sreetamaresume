@@ -23,7 +23,7 @@
 <body class="bg-brandBackground text-brandCharcoal font-sans antialiased">
 
   <header class="max-w-6xl mx-auto px-6 pt-16 pb-8 border-b border-gray-200">
-    <div class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex flex-wrap items-center justify-between gap-6">
       <div>
         <span class="text-xs font-semibold tracking-widest text-brandTerracotta uppercase">Mobile Architecture & AI Systems</span>
         <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl mt-1 text-brandCharcoal">
@@ -33,10 +33,19 @@
           A React Native application for postpartum nutrition, powered by a custom Model Context Protocol (MCP) server for intelligent amino acid database reasoning.
         </p>
       </div>
-      <div class="flex gap-3">
-        <span class="bg-brandSage/10 text-brandSage border border-brandSage/20 px-3 py-1.5 rounded-full text-xs font-medium">React Native</span>
-        <span class="bg-brandSage/10 text-brandSage border border-brandSage/20 px-3 py-1.5 rounded-full text-xs font-medium">Expo Router</span>
-        <span class="bg-brandSage/10 text-brandSage border border-brandSage/20 px-3 py-1.5 rounded-full text-xs font-medium">TypeScript</span>
+      <div class="flex flex-col sm:items-end gap-3">
+        <a 
+          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center bg-brandSage text-white font-medium text-sm px-5 py-2.5 rounded-xl shadow-sm hover:bg-[#7ba283] transition-colors active:scale-95"
+        >
+          Explore Figma Canvas ➔
+        </a>
+        <div class="flex gap-2">
+          <span class="bg-brandSage/10 text-brandSage border border-brandSage/20 px-2.5 py-1 rounded-full text-xs font-medium">React Native</span>
+          <span class="bg-brandSage/10 text-brandSage border border-brandSage/20 px-2.5 py-1 rounded-full text-xs font-medium">Expo Router</span>
+        </div>
       </div>
     </div>
   </header>
@@ -44,15 +53,37 @@
   <main class="max-w-6xl mx-auto px-6 py-12">
     
     <section class="mb-12">
-      <h2 class="text-2xl font-bold tracking-tight text-brandCharcoal">UI/UX Flow: From Strategy to Structural Layout</h2>
-      <p class="text-sm text-gray-500 mt-1">Demonstrating low-friction user onboarding using file-based path state compilation.</p>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-brandCharcoal">UI/UX Flow: From Strategy to Structural Layout</h2>
+          <p class="text-sm text-gray-500 mt-1">Demonstrating low-friction user onboarding using file-based path state compilation.</p>
+        </div>
+        <a 
+          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-semibold text-brandTerracotta hover:underline self-start sm:self-center"
+        >
+          View Source Design System &rarr;
+        </a>
+      </div>
       
-      <div class="mt-8 bg-gray-100 rounded-2xl p-8 border border-gray-200/60 flex flex-col items-center justify-center">
-        <img 
-          src="Screenshot 2026-05-26 at 09.10.20.png" 
-          alt="Essential Protein Onboarding Wireframes" 
-          class="rounded-xl shadow-lg border border-gray-200 max-w-full h-auto object-cover transition duration-300 hover:scale-[1.01]"
-        />
+      <div class="mt-8 bg-gray-100 rounded-2xl p-8 border border-gray-200/60 flex flex-col items-center justify-center relative group">
+        <a 
+          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full flex flex-col items-center"
+        >
+          <img 
+            src="Screenshot 2026-05-26 at 09.10.20.png" 
+            alt="Essential Protein Onboarding Wireframes" 
+            class="rounded-xl shadow-lg border border-gray-200 max-w-full h-auto object-cover transition duration-300 group-hover:scale-[1.005] group-hover:shadow-xl"
+          />
+          <div class="absolute inset-0 bg-brandCharcoal/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
+            <span class="bg-white text-brandCharcoal text-xs font-bold px-4 py-2 rounded-lg shadow-md pointer-events-none">Open Interactive Figma File</span>
+          </div>
+        </a>
         <span class="text-xs text-gray-400 mt-4 italic">Figure 1.0: Multi-step pagination flow state transitions (Splash Screen through Stage Steps).</span>
       </div>
     </section>
@@ -92,9 +123,16 @@
   <footer class="bg-brandCharcoal text-white/90 mt-16 py-8 px-6 text-center text-xs tracking-wider">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <p>&copy; 2026 Team Mars + Sree &bull; Case Study Asset</p>
-      <div class="flex gap-4">
+      <div class="flex gap-6">
         <a href="#" class="hover:text-brandSage transition-colors">GitHub Repository</a>
-        <a href="#" class="hover:text-brandSage transition-colors">Figma Canvas</a>
+        <a 
+          href="https://www.figma.com/design/UetXb89UJu4nDSdQo6sfO7/Complete-Protein?node-id=0-1&p=f&t=obSqhyzOcJnQ2xQo-0" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="hover:text-brandSage transition-colors font-semibold"
+        >
+          Live Figma Project File
+        </a>
       </div>
     </div>
   </footer>
